@@ -38,7 +38,7 @@ export default function TempoJuntos() {
       const secondsR = seconds % 60;
 
       setTempo(
-        `Juntos há ${years} ano${years !== 1 ? "s" : ""}, ${months} mês${months !== 1 ? "es" : ""}, ` +
+        `Juntos há ${years} ano${years !== 1 ? "s" : ""}, ${months} m${months !== 1 ? "eses" : "ês"}, ` +
           `${day} dia${day !== 1 ? "s" : ""}, ${hoursR} hora${hoursR !== 1 ? "s" : ""}, ` +
           `${minutesR} minuto${minutesR !== 1 ? "s" : ""} e ${secondsR} segundo${secondsR !== 1 ? "s" : ""}`,
       );
