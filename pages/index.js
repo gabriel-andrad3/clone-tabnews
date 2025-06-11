@@ -1,7 +1,8 @@
-// app/tempo/page.tsx (App Router) ou pages/tempo.js (Pages Router)
-"use client"; // apenas no App Router
+// pages/tempo.js (ou app/tempo/page.tsx se for App Router)
+"use client"; // Somente se for App Router
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Head from "next/head";
 
 export default function TempoJuntos() {
   const [tempo, setTempo] = useState("Calculando...");
@@ -46,34 +47,86 @@ export default function TempoJuntos() {
 
     const interval = setInterval(updateTimer, 1000);
     updateTimer();
-
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div style={styles.container}>
-      <div style={styles.content}>
-        <Image
-          src="/foto.jpg" // Coloque sua foto em /public/foto.jpg
-          alt="Foto do casal"
-          width={300}
-          height={300}
-          style={styles.image}
+    <>
+      <Head>
+        <title>Nosso Amor</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="true"
         />
-        <h1 style={styles.text}>{tempo}</h1>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+
+      <div style={styles.container}>
+        <div className="hearts" />
+        <div style={styles.content}>
+          <Image
+            src="/foto.jpg"
+            alt="Foto do casal"
+            width={300}
+            height={300}
+            style={styles.image}
+          />
+          <h1 style={styles.title}>Nosso Amor 💖</h1>
+          <p style={styles.text}>{tempo}</p>
+        </div>
+
+        <style jsx>{`
+          .hearts::before,
+          .hearts::after {
+            content: "💗";
+            position: fixed;
+            font-size: 24px;
+            animation: float 6s linear infinite;
+          }
+
+          .hearts::after {
+            left: 80%;
+            animation-delay: 3s;
+          }
+
+          .hearts::before {
+            left: 20%;
+          }
+
+          @keyframes float {
+            0% {
+              bottom: -20px;
+              opacity: 0;
+            }
+            50% {
+              opacity: 1;
+            }
+            100% {
+              bottom: 100vh;
+              opacity: 0;
+            }
+          }
+        `}</style>
       </div>
-    </div>
+    </>
   );
 }
 
 const styles = {
   container: {
     minHeight: "100vh",
-    backgroundColor: "#ffeef2",
+    background: "linear-gradient(135deg, #ffeef2, #fff0f5)",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "20px",
+    padding: "30px",
+    position: "relative",
+    overflow: "hidden",
   },
   content: {
     maxWidth: "90%",
@@ -87,9 +140,15 @@ const styles = {
     height: "auto",
     maxWidth: "300px",
   },
-  text: {
-    fontSize: "1.2rem",
+  title: {
+    fontFamily: "'Great Vibes', cursive",
+    fontSize: "2.5rem",
     marginTop: "20px",
+  },
+  text: {
+    fontFamily: "'Quicksand', sans-serif",
+    fontSize: "1.2rem",
+    marginTop: "10px",
     lineHeight: 1.6,
   },
 };
