@@ -87,15 +87,18 @@ export default function TempoJuntos() {
             position: fixed;
             font-size: 24px;
             animation: float 6s linear infinite;
-          }
-
-          .hearts::after {
-            left: 80%;
-            animation-delay: 3s;
+            bottom: -20px;
+            opacity: 0;
           }
 
           .hearts::before {
             left: 20%;
+            animation-delay: 0s;
+          }
+
+          .hearts::after {
+            left: 80%;
+            animation-delay: 2s;
           }
 
           @keyframes float {
